@@ -11,10 +11,12 @@ public class movimiento : MonoBehaviour
     public float playerSpeed = 2.0f;
     public float jumpHeight = 5.0f;
     public float gravityValue = -9.81f;
+    private AudioSource SonidoDeSalto;
 
     private void Start()
     {
          controller = this.GetComponent<CharacterController>();
+         SonidoDeSalto = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -39,6 +41,7 @@ public class movimiento : MonoBehaviour
         if (Input.GetButton("Jump") && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            SonidoDeSalto.Play();
         }
         if(Input.GetButtonUp("Jump")){
             velocidadcaidarapida = 2;
