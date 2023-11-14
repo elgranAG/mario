@@ -12,11 +12,15 @@ public class movimiento : MonoBehaviour
     public float jumpHeight = 5.0f;
     public float gravityValue = -9.81f;
     private AudioSource SonidoDeSalto;
+    public Animator animator;
+    public static bool growup;
+    
 
     private void Start()
     {
          controller = this.GetComponent<CharacterController>();
          SonidoDeSalto = GetComponent<AudioSource>();
+         growup = false;
     }
 
     void Update()
@@ -49,5 +53,10 @@ public class movimiento : MonoBehaviour
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+
+        if(growup)
+        {
+            animator.SetBool("Growup",growup);
+        }
     }
 }
